@@ -1,0 +1,121 @@
+<div class="container">
+	<h1 id="welcome"></h1>
+		{{!-- for each player, create list --}}
+	<div class="row">
+		<div class="col-md-3">
+			<ul id="playerList">
+				<h2>Players</h2>
+			</ul>
+		</div>
+		<div class="col-md-6">
+			<div class="table">
+			    <div class="tableRow">
+			        <div class="cell" id="s1" data-toggle="0"></div>
+			        <div class="cell" id="s2" data-toggle="0"></div>
+			        <div class="cell" id="s3" data-toggle="0"></div>
+			        <div class="cell" id="s4" data-toggle="0"></div>
+			        <div class="cell" id="s5" data-toggle="0"></div>
+			    </div>
+			    <div class="tableRow">
+			        <div class="cell" id="s6" data-toggle="0"></div>
+			        <div class="cell" id="s7" data-toggle="0"></div>
+			        <div class="cell" id="s8" data-toggle="0"></div>
+			        <div class="cell" id="s9" data-toggle="0"></div>
+			        <div class="cell" id="s10" data-toggle="0"></div>
+			    </div>
+			    <div class="tableRow">
+			        <div class="cell" id="s11" data-toggle="0"></div>
+			        <div class="cell" id="s12" data-toggle="0"></div>
+			        <div class="cell" id="s13" data-toggle="0"></div>
+			        <div class="cell" id="s14" data-toggle="0"></div>
+			        <div class="cell" id="s15" data-toggle="0"></div>
+			    </div>
+			    <div class="tableRow">
+			        <div class="cell" id="s16" data-toggle="0"></div>
+			        <div class="cell" id="s17" data-toggle="0"></div>
+			        <div class="cell" id="s18" data-toggle="0"></div>
+			        <div class="cell" id="s19" data-toggle="0"></div>
+			        <div class="cell" id="s20" data-toggle="0"></div>
+			    </div>
+			    <div class="tableRow">
+			        <div class="cell" id="s21" data-toggle="0"></div>
+			        <div class="cell" id="s22" data-toggle="0"></div>
+			        <div class="cell" id="s23" data-toggle="0"></div>
+			        <div class="cell" id="s24" data-toggle="0"></div>
+			        <div class="cell" id="s25" data-toggle="0"></div>
+			    </div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<ol id="rules">
+				<h2>Rules</h2>
+			</ol>
+		</div>
+	</div>
+	<footer>
+		<a href="/">Home</a> | <span id="dark">Dark Theme</span> | <span id="light">White Theme</span>
+	</footer>
+</div>
+
+<script type="text/javascript">
+
+	
+	if("{{message}}".length > 2) {
+		$("#welcome").html("{{message}}");
+	} else {
+		$("#welcome").html(players[parseInt("{{message}}" - 1)] + "'s Board");
+	}
+
+	//Loads the player list
+	for (var i = 0; i < players.length; i++) {
+		$("#playerList").append("<li><a href='/" + (i + 1) + "_" + players[i].replace(" ", "_") + "'>" + players[i] + "</a></li>");
+	}
+
+	//When the page is loaded, fills the board with that player's bingo
+	var squares = "{{board}}".split(",");
+	console.log(squares);
+	for (var i = 0; i < squares.length; i++) {
+		$("#s" + (i + 1)).text(squares[i]);
+	} 
+
+	//Loads the rules from the file
+	for (var i = 0; i < rules.length; i++) {
+		$("#rules").append("<li>" + rules[i] + "</li>");
+	}
+
+	//When a cell is clicked, crosses it out
+	$(".cell").on("click", function() {
+			
+		if(parseInt($(this).attr("data-toggle")) === 0) {
+			$(this).attr("data-toggle", "1");
+			$(this).css("background-color", "red");	
+		}
+		else {
+			$(this).attr("data-toggle", "0");
+			$(this).css("background-color", "inherit");	
+		}
+		
+	});
+
+	//Sets page to black theme
+	$("#dark").on("click", function(){
+		$(document.body).css("background-color", "#333");
+		$("*").css("color", "#eee");
+		$("a:link").css("color", "#eee");
+		$("a:visited").css("color", "#eee");
+		$(".cell").css("border-color", "white");
+	});
+
+	//Sets page to default white theme
+	$("#light").on("click", function(){
+		$(document.body).css("background-color", "white");
+		$("*").css("color", "#222");
+		$("a:link").css("color", "#0000EE");
+		$("a:visited").css("color", "#0000EE");
+		$(".cell").css("border-color", "black");
+	});
+
+</script>
+
+
+

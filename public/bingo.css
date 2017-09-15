@@ -1,0 +1,51 @@
+body {
+	background-color: white;
+}
+* {
+	color: inherit;
+}
+a:link, a:visited {
+	color: inherit;
+}
+
+span:hover {
+	text-decoration: underline;
+}
+
+h1 {
+	text-align: center;
+}
+h2 {
+	text-decoration: underline;
+}
+.row { 
+	display: flex;
+	justify-content: center;
+}
+
+.table { 
+	margin: auto;
+}
+.tableRow { 
+	display: flex;
+	justify-content: center;
+	clear: both; 
+	overflow: hidden; 
+}
+.cell { 
+	border: 1px solid black; 
+	float: left;
+	width: 109px; 
+	height: 109px;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	word-wrap: normal;
+	justify-content: center;
+	padding: 4px;
+	font-size: 15px;
+}
+
+.checked {
+	
+}
