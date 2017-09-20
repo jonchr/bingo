@@ -17,12 +17,12 @@ var ORM = {
 		//The columns for each of the squares' question number
 		var squares = ["s0","s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","s12","s13","s14","s15","s16","s17","s18","s19","s20","s21","s22","s23","s24"];
 
-		var queryString = "INSERT INTO bingo (id, name," + squares.join() + ", createdAt) "
+		var queryString = "INSERT INTO bingo (id, name," + squares.join() + ") ";
 		queryString += "VALUES (" + id + "," + name;
 		for (var i in board) {
 			queryString += ", " + board[i];
 		}
-		queryString += ", null);"
+		queryString += ");";
 		
 		console.log(queryString);
 
