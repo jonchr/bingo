@@ -18,6 +18,9 @@ h1 {
 h2 {
 	text-decoration: underline;
 }
+.rules {
+	margin-bottom: 3px;
+}
 .row { 
 	display: flex;
 	justify-content: center;
@@ -44,8 +47,4 @@ h2 {
 	justify-content: center;
 	padding: 4px;
 	font-size: 15px;
-}
-
-.checked {
-	
 }
