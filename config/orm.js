@@ -22,7 +22,7 @@ var ORM = {
 		for (var i in board) {
 			queryString += ", " + board[i];
 		}
-		queryString += ", null)";
+		queryString += ", null);"
 		
 		console.log(queryString);
 
