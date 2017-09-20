@@ -6,7 +6,7 @@ var ORM = {
 	//returns a user's board
 	getUser: function(id, cb) {
 		
-		connection.query("SELECT * FROM bingo WHERE id=" + id, function(err, result) {
+		connection.query("SELECT * FROM bingo WHERE id=" + id + ";", function(err, result) {
 			if (err) throw err;
 			cb(result);
 		});
