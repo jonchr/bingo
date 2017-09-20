@@ -57,7 +57,7 @@ app.get("/:player", function(req, res){
 		console.log(mySquares);
 
 		res.render("index", { 
-			board: mySquares.join(),
+			board: mySquares.join(","),
 			message: id
 		});
 	});

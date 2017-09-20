@@ -75,7 +75,7 @@
 	var squares = "{{board}}".split(",");
 	console.log(squares);
 	for (var i = 0; i < squares.length; i++) {
-		$("#s" + (i + 1)).text(squares[i]);
+		$("#s" + (i + 1)).html(squares[i]);
 	} 
 
 	//Loads the rules from the file
