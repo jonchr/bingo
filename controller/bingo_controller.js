@@ -22,11 +22,6 @@ app.get("/", function(req, res) {
 	});	
 });
 
-app.get("/test", function(req, res) {
-	res.json(generateSquares(1));
-
-});
-
 //Loads the page with a user's board
 app.get("/:player", function(req, res){
 
