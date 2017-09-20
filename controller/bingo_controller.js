@@ -45,6 +45,7 @@ app.get("/:player", function(req, res){
 		
 		//If user does not exist in database, generates and saves their squares in the db
 		if(data.length === 0) {
+			console.log("New player; generating squares");
 			mySquares = generateSquares(id);
 			ORM.newUser(id, pName, mySquares, function() {
 				//Do nothing
@@ -52,6 +53,7 @@ app.get("/:player", function(req, res){
 			//Converts the array to an object to match how it is when returned by a query
 			mySquares = convertToObject(mySquares);
 		} else {
+			console.log("Retrieving previous squares");
 			mySquares = data[0];
 		}
 
