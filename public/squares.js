@@ -4,7 +4,7 @@
 //An event cannot have a comma, quotes, or apostrophes in it or it'll screw everything up
 
 var squares = [
-"Someone is late to class",
+"Late crew is late",
 "Hearthstone",
 "Christin gets the dirt from someone",
 "Stephen / Steven confusion",
@@ -19,8 +19,7 @@ var squares = [
 "Bad pun / Jared makes a joke falls flat",
 "*Parking lot that*",
 "Jared adjusts the blinds",
-"Jared vs touchscreen",
-"*Awkward pause*",
+"Jared vs. touchscreen",
 "*RTFM*",
 "Jared drops a S or F-bomb",
 "Whiteboard marker runs dry",
@@ -28,14 +27,22 @@ var squares = [
 "Jared references people asleep / food coma",
 "Jared has Joe explain something advanced",
 "Jared calls Jake *Chad*",
-"Jared not wearing button-down / v-neck / slacks",
+"Jared not wearing usual oufit (button-down / v-neck / slacks)",
 "Jared tries to scare people into paying attention",
 "Eric Wareham gif (magical explosion in space)",
-"Youtube / Panopto recording troubles",
+"Youtube / Panopto video troubles",
 "General / unspecified chaos",
 "Doge gif",
-"*I have heard too much from you*",
-"Joke / play on the word Mongo"
+"*Ive heard too much from you*",
+"*It will make sense later*",
+"*Out in the wild*",
+"*this* joke",
+"Jared asks someone walking in a question",
+"*Do we need more time on this?*...ok 5 more minutes",
+"Jared tries to trick people",
+"Netflix & chill",
+"Jared slack messages > 100",
+"*Post it in the instructions channel*"
 ];
 
 module.exports = squares;

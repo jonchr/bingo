@@ -1,6 +1,6 @@
-// Imports express and sets up the router
+// Imports express and sets up the app
 var express = require("express");
-var router = express.Router();
+var app = express();
 
 var squares = require("../public/squares.js");
 var players = require("../public/players.js");
@@ -14,57 +14,61 @@ var squares = require("../public/squares.js");
 var numSquares = 25;
 
 //Sets up routes
+//Returns the default page with a blank board
+app.get("/", function(req, res) {
+	res.render("index", { 
+		board: "",
+		message: "Welcome to GW Bingo!!!"
+	});	
+});
 
-	//Returns the default page with a blank board
-	router.get("/", function(req, res) {
-		res.render("index", { 
-			board: "",
-			message: "Welcome to GW Bingo!!!"
-		});	
-	});
+app.get("/test", function(req, res) {
+	res.json(generateSquares(1));
 
-	//Loads the page with a user's board
-	router.get("/:idplayer", function(req, res){
+});
 
-		//Parces the player ID and name from req.params
-		var temp = req.params.idplayer;
-		var id = temp.substring(0, temp.search("_"));
-		var name = '"' + temp.substring(temp.search("_") + 1) + '"';
-		name = name.replace("_"," ");
+//Loads the page with a user's board
+app.get("/:player", function(req, res){
 
-		//Runs a check if the user is in the database
-		//If they are not, randomly generates questions and submits the user
-		ORM.getUser(id, function(data) {
-			if(data.length === 0) {
-				ORM.newUser(id, name, mySquares(id), function() {
-					//do nothing
-				});
-			}
-		});
+	//Parces the player ID and pName from req.params
+	var temp = req.params.player;
+	console.log(temp);
 
-		ORM.getUser(id, function(data) {
-			
-			var mySquares = convertToEvent(data[0]);
-			console.log(mySquares);
-			res.render("index", { 
-				board: mySquares.join(),
-				message: id
+	var id = temp.substring(0, temp.search("_"));
+	var pName = temp.substring(temp.search("_") + 1);
+	pName = "'" + pName.replace("_"," ") + "'";
+	
+	//Pulls data for the player ID
+	ORM.getUser(id, function(data) {
+		
+		var mySquares;
+		
+		//If user does not exist in database, generates and saves their squares in the db
+		if(data.length === 0) {
+			mySquares = generateSquares(id);
+			ORM.newUser(id, pName, mySquares, function() {
+				//Do nothing
 			});
+			//Converts the array to an object to match how it is when returned by a query
+			mySquares = convertToObject(mySquares);
+		} else {
+			mySquares = data[0];
+		}
+
+		//Converts mySquares to the actual words
+		mySquares = convertToEvent(mySquares);
+		console.log(mySquares);
+
+		res.render("index", { 
+			board: mySquares.join(),
+			message: id
 		});
 	});
+}); 
 
-	//Allows for a page to generate a new user's random board
-	// router.post("/:id", function(req, res) {
-
-	// 	ORM.newUser(req.params.id, req.body.name, req.body.array, function(){
-	// 		res.redirect("/" + req.params.id);
-	// 	});
-	// });
-
-//Exports routes for the server to use
-module.exports = router;
-
-function mySquares(playerID) {
+//Randomly generates a player's squares from the squares array
+//Squares are generated as the event number, not the text
+function generateSquares(playerID) {
 
 	//Creates a temp array of numbers 0 to squares.length -1
 	var tempArray = [];
@@ -72,7 +76,7 @@ function mySquares(playerID) {
 		tempArray.push(i);
 	}
 
-	//If Kieran or Christin, removes the events specific to them
+	//If Kieran or Christin, removes the event numbers specific to them
 	if(parseInt(playerID) === 22) tempArray.splice(1, 1);
 	if(parseInt(playerID) === 10) tempArray.splice(2, 1);
 
@@ -84,10 +88,8 @@ function mySquares(playerID) {
 	
 	//Fills randomSquares randomly with numbers from tempArray, and removes those entries so you don't get the same one twice
 	for (var i = 0; i < numSquares; i++) {
-		
 		var random = Math.floor(Math.random() * tempArray.length);
-		randomSquares.push(tempArray.splice(random, 1));
-		
+		randomSquares.push(tempArray.splice(random, 1)[0]);
 	}
 
 	//Manuially replaces position 12 with event 0
@@ -96,13 +98,28 @@ function mySquares(playerID) {
 	return randomSquares;
 }
 
+//Converts the object to an array of text events
 function convertToEvent(playerData) {
 
 	var text = [];
-	//starts at 1 and is <= because 
+	
 	for (var i = 0; i < numSquares; i++) {
 		text.push(squares[playerData["s" + i]]);
 	}
+	
 	return text;
-
 }
+
+//Converts the array to an object to match how it is when returned by a query
+function convertToObject(array) {
+	
+	var tempObj = {};
+	
+	for (var i in array) {
+		tempObj[`s${i}`] = array[i];
+	}
+	return tempObj;
+}
+
+//Exports routes for the server to use
+module.exports = app;

@@ -53,7 +53,7 @@
 		</div>
 	</div>
 	<footer>
-		<a href="/">Home</a> | <span id="dark">Dark Theme</span> | <span id="light">White Theme</span>
+		<a href="/">Home</a> | <span id="dark">Dark Theme</span> | <span id="light">Light Theme</span>
 	</footer>
 </div>
 
@@ -84,6 +84,7 @@
 	}
 
 	//When a cell is clicked, crosses it out
+	//Currently makes it red instead of crossing it out
 	$(".cell").on("click", function() {
 			
 		if(parseInt($(this).attr("data-toggle")) === 0) {
@@ -97,7 +98,7 @@
 		
 	});
 
-	//Sets page to black theme
+	//Sets page to dark theme
 	$("#dark").on("click", function(){
 		$(document.body).css("background-color", "#333");
 		$("*").css("color", "#eee");
@@ -106,12 +107,12 @@
 		$(".cell").css("border-color", "white");
 	});
 
-	//Sets page to default white theme
+	//Sets page to default light theme
 	$("#light").on("click", function(){
 		$(document.body).css("background-color", "white");
 		$("*").css("color", "#222");
-		$("a:link").css("color", "#0000EE");
-		$("a:visited").css("color", "#0000EE");
+		$("a:link").css("color", "#222");
+		$("a:visited").css("color", "#222");
 		$(".cell").css("border-color", "black");
 	});
 

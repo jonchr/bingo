@@ -8,7 +8,7 @@ var players = [
 "Andrea Pinillos",
 "Bryan Sylla",
 "Chinedu Onugu",
-"Christin Lynn Kim",
+"Christin LK",
 "Claire Durst",
 "Dain Lee",
 "Eliram Malachi",
