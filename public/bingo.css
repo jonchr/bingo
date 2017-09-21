@@ -15,7 +15,7 @@ span:hover {
 h1 {
 	text-align: center;
 }
-h2 {
+h3 {
 	text-decoration: underline;
 }
 .rules {
@@ -24,6 +24,18 @@ h2 {
 .row { 
 	display: flex;
 	justify-content: center;
+}
+.secret:hover {
+	text-decoration: none;
+}
+.checkMark {
+	/*float: left;*/
+	height: 89px;
+	position: absolute;
+	color: red;
+	font-size: 89px;
+	z-index: 2;
+
 }
 
 .table { 
@@ -47,4 +59,42 @@ h2 {
 	justify-content: center;
 	padding: 4px;
 	font-size: 15px;
+}
+
+/*Thickens the outside borders to match width*/
+#s0, #s1, #s2, #s3, #s4 {
+	border-top-width: 2px;
+}
+#s0, #s5, #s10, #s15, #s20 {
+	border-left-width: 2px;
+}
+#s4, #s9, #s14, #s19, #s24 {
+	border-right-width: 2px;
+}
+#s20, #s21, #s22, #s23, #s24 {
+	border-bottom-width: 2px;
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	.cell {
+		width: 60px;
+		height: 60px;
+	}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+	.cell {
+		width: 81px;
+		height: 81px;
+	}
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+	.cell {
+		width: 81px;
+		height: 81px;
+	}
 }

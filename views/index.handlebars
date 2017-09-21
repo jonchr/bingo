@@ -1,65 +1,67 @@
 <div class="container">
 	<h1 id="welcome"></h1>
-		{{!-- for each player, create list --}}
+	{{!-- for each player, create list --}}
 	<div class="row">
 		<div class="col-md-3">
 			<ul id="playerList">
-				<h2>Players</h2>
+				<h3>Players</span></h3>
 			</ul>
 		</div>
 		<div class="col-md-6">
 			<div class="table">
 			    <div class="tableRow">
+			    	<div class="cell" id="s0" data-toggle="0"></div>
 			        <div class="cell" id="s1" data-toggle="0"></div>
 			        <div class="cell" id="s2" data-toggle="0"></div>
 			        <div class="cell" id="s3" data-toggle="0"></div>
 			        <div class="cell" id="s4" data-toggle="0"></div>
-			        <div class="cell" id="s5" data-toggle="0"></div>
 			    </div>
 			    <div class="tableRow">
+			    	<div class="cell" id="s5" data-toggle="0"></div>
 			        <div class="cell" id="s6" data-toggle="0"></div>
 			        <div class="cell" id="s7" data-toggle="0"></div>
 			        <div class="cell" id="s8" data-toggle="0"></div>
 			        <div class="cell" id="s9" data-toggle="0"></div>
-			        <div class="cell" id="s10" data-toggle="0"></div>
 			    </div>
 			    <div class="tableRow">
+			        <div class="cell" id="s10" data-toggle="0"></div>
 			        <div class="cell" id="s11" data-toggle="0"></div>
 			        <div class="cell" id="s12" data-toggle="0"></div>
 			        <div class="cell" id="s13" data-toggle="0"></div>
 			        <div class="cell" id="s14" data-toggle="0"></div>
-			        <div class="cell" id="s15" data-toggle="0"></div>
 			    </div>
 			    <div class="tableRow">
+			    	<div class="cell" id="s15" data-toggle="0"></div>
 			        <div class="cell" id="s16" data-toggle="0"></div>
 			        <div class="cell" id="s17" data-toggle="0"></div>
 			        <div class="cell" id="s18" data-toggle="0"></div>
 			        <div class="cell" id="s19" data-toggle="0"></div>
-			        <div class="cell" id="s20" data-toggle="0"></div>
 			    </div>
 			    <div class="tableRow">
+			    	<div class="cell" id="s20" data-toggle="0"></div>
 			        <div class="cell" id="s21" data-toggle="0"></div>
 			        <div class="cell" id="s22" data-toggle="0"></div>
 			        <div class="cell" id="s23" data-toggle="0"></div>
 			        <div class="cell" id="s24" data-toggle="0"></div>
-			        <div class="cell" id="s25" data-toggle="0"></div>
 			    </div>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<ol id="rules">
-				<h2>Rules</h2>
+				<h3>Rules</h3>
 			</ol>
 		</div>
 	</div>
 	<footer>
-		<a href="/">Home</a> | <span id="dark">Dark Theme</span> | <span id="light">Light Theme</span>
+		<a href="/" id="home">Home</a> | <span id="light">Light Theme</span> | <span id="dark">Dark Theme</span> | <span id="strawberry">Strawberry Theme</span> | <span id="easter">Easter Theme</span> | <span id="beach">Will's Theme</span> | <span id="custom">Custom Theme</span>
 	</footer>
 </div>
 
 <script type="text/javascript">
 
-	
+	var cellColor = "white";
+	var crossColor = "red";
+
 	if("{{message}}".length > 2) {
 		$("#welcome").html("{{message}}");
 	} else {
@@ -68,14 +70,14 @@
 
 	//Loads the player list
 	for (var i = 0; i < players.length; i++) {
-		$("#playerList").append("<li><a href='/" + (i + 1) + "_" + players[i].replace(" ", "_") + "'>" + players[i] + "</a></li>");
+		$("#playerList").append("<li><a href='/" + (i + 1) + "_" + players[i].replace(" ", "_") + "' class='playerLink'>" + players[i] + "</a></li>");
 	}
 
 	//When the page is loaded, fills the board with that player's bingo
 	var squares = "{{board}}".split(",");
 	console.log(squares);
 	for (var i = 0; i < squares.length; i++) {
-		$("#s" + (i + 1)).html(squares[i]);
+		$("#s" + i).html(squares[i]);
 	} 
 
 	//Loads the rules from the file
@@ -89,32 +91,81 @@
 			
 		if(parseInt($(this).attr("data-toggle")) === 0) {
 			$(this).attr("data-toggle", "1");
-			$(this).css("background-color", "red");	
+			// $(this).css("background-color", crossColor);	
+			// $(this).append("<br><img src='./Jared.png' class='checkMark'>");
+			$(this).append("<div class='checkMark'>&#x2716</div>");
 		}
 		else {
 			$(this).attr("data-toggle", "0");
-			$(this).css("background-color", "inherit");	
+			$(this).css("background-color", cellColor);	
+			$(this).children("*").remove();
+			
 		}
 		
 	});
 
+	//Sets page to default light theme
+	$("#light").on("click", function() { setTheme(null, "white", "#222", "#222", "black", "") });
+
 	//Sets page to dark theme
-	$("#dark").on("click", function(){
-		$(document.body).css("background-color", "#333");
-		$("*").css("color", "#eee");
-		$("a:link").css("color", "#eee");
-		$("a:visited").css("color", "#eee");
-		$(".cell").css("border-color", "white");
+	$("#dark").on("click", function(){ setTheme(null, "#333", "#eee", "#eee", "white", "") });
+
+	//Sets page to strawberry shortcake theme
+	$("#strawberry").on("click", function(){ setTheme(null, "#FCDCE9", "#F42A2D", "#B0EB00", "#F7E9B2", "") });
+
+	//Sets page to spring theme
+	$("#easter").on("click", function() { setTheme(null, "#ABE544", "#867AEF", "#E177F3", "#71E8FC", "")});
+
+	//Sets page to Will theme
+	$("#beach").on("click", function() { setTheme("./beach.jpg", "none", "#ABE544", "darkblue", "#71E8FC", "")});
+
+	$("#custom").on("click", function() {
+		let imageURL = prompt("Enter Background Image URL (select cancel if setting a color)");
+		let backgroundColor = prompt('Enter Background Color in a CSS format (i.e. "red", "#FF0000", or "rgb(256, 0, 0)")\nSelect cancel if setting an image.');
+		if(!imageURL && !backgroundColor) {
+			alert("Please enter either a background image or color.");
+			return;
+		}
+		let textColor = prompt("Enter MAIN TEXT COLOR for the squares in a CSS format (e.g. red, #FF0000, or rgb(256, 0, 0))");
+		let borderColor = prompt("Enter LINE COLOR for the squares in a CSS format (e.g. red, #FF0000, or rgb(256, 0, 0))");
+		let sideTextColor = prompt("Enter SIDE TEXT COLOR for the names and rules in a CSS format (e.g. red, #FF0000, or rgb(256, 0, 0))");
+		let xSpecs = prompt('Enter Image URL or Color of X to appear over box');
+		setTheme(imageURL, backgroundColor, textColor, borderColor, sideTextColor, xSpecs);
 	});
 
-	//Sets page to default light theme
-	$("#light").on("click", function(){
-		$(document.body).css("background-color", "white");
-		$("*").css("color", "#222");
-		$("a:link").css("color", "#222");
-		$("a:visited").css("color", "#222");
-		$(".cell").css("border-color", "black");
-	});
+	$(".secret").on("click", function() { setTheme("./disco.png", "", "black", "white", "black", "")});
+
+
+	//Method to change page theme
+	const setTheme = (bgdImage, bgdColor, textColor, sideColor, lineColor, X) => {
+		//Sets background image
+		if(bgdImage){
+			$(document.body).css("background-image", `url(${bgdImage})`);
+			cellColor = "white";
+		}
+		//Or color
+		else {
+			$(document.body).css("background-image", "none");
+			cellColor = bgdColor;
+			$(document.body).css("background-color", bgdColor);
+		}
+		//Sets the cell background color
+		$(".cell").css("background-color", cellColor)
+
+		//Sets text color for center of the page
+		$("*").css("color", textColor);
+		$("#home").css("color", textColor);
+			
+		//Sets color for the box
+		$(".cell").css("border-color", lineColor);
+
+		//Sets text color for the sidebars
+		$("h3").css("color", sideColor);
+		$(".rules").css("color", sideColor);
+		$(".playerLink").css("color", sideColor);
+		$(".secret").css("color", sideColor);
+		$("li").css("color", sideColor);
+	}
 
 </script>
 
