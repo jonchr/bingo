@@ -15,10 +15,10 @@ var squares = [
 `"Please explain lines 1-5"`,
 `Jared gets visibly frustrated`,
 `Kevin / Kyle guest appearance`,
-`Alex is wearing a long sleeve button up`,
+`Alex is wearing a t-shirt`,
 `Bad pun / Jared makes a joke that falls flat`,
 `"Parking lot that"`,
-`Jared adjusts the blinds`,
+`Jared adjusts the blinds while teaching`,
 `Jared vs. touchscreen`,
 `"RTFM"`,
 `Jared drops a S or F-bomb`,
@@ -42,7 +42,8 @@ var squares = [
 `"Netflix & chill"`,
 `Jared slack messages > 100`,
 `"Slack/post your solution in the class-instructions channel"`,
-`Jared calls people out for being hungover`
+`Jared calls people out for being hungover`,
+`We're behind schedule/need to step on the accelerator`
 ];
 
 module.exports = squares;

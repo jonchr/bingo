@@ -4,45 +4,45 @@
 	<div class="row">
 		<div class="col-md-3">
 			<ul id="playerList">
-				<h3>Players</span></h3>
+				<h3>Players</h3>
 			</ul>
 		</div>
 		<div class="col-md-6">
 			<div class="table">
 			    <div class="tableRow">
-			    	<div class="cell" id="s0" data-toggle="0"></div>
-			        <div class="cell" id="s1" data-toggle="0"></div>
-			        <div class="cell" id="s2" data-toggle="0"></div>
-			        <div class="cell" id="s3" data-toggle="0"></div>
-			        <div class="cell" id="s4" data-toggle="0"></div>
+			    	<div class="cell" id="b0" data-toggle="0"><div id="s0"></div></div>
+			        <div class="cell" id="b1" data-toggle="0"><div id="s1"></div></div>
+			        <div class="cell" id="b2" data-toggle="0"><div id="s2"></div></div>
+			        <div class="cell" id="b3" data-toggle="0"><div id="s3"></div></div>
+			        <div class="cell" id="b4" data-toggle="0"><div id="s4"></div></div>
 			    </div>
 			    <div class="tableRow">
-			    	<div class="cell" id="s5" data-toggle="0"></div>
-			        <div class="cell" id="s6" data-toggle="0"></div>
-			        <div class="cell" id="s7" data-toggle="0"></div>
-			        <div class="cell" id="s8" data-toggle="0"></div>
-			        <div class="cell" id="s9" data-toggle="0"></div>
+			    	<div class="cell" id="b5" data-toggle="0"><div id="s5"></div></div>
+			        <div class="cell" id="b6" data-toggle="0"><div id="s6"></div></div>
+			        <div class="cell" id="b7" data-toggle="0"><div id="s7"></div></div>
+			        <div class="cell" id="b8" data-toggle="0"><div id="s8"></div></div>
+			        <div class="cell" id="b9" data-toggle="0"><div id="s9"></div></div>
 			    </div>
 			    <div class="tableRow">
-			        <div class="cell" id="s10" data-toggle="0"></div>
-			        <div class="cell" id="s11" data-toggle="0"></div>
-			        <div class="cell" id="s12" data-toggle="0"></div>
-			        <div class="cell" id="s13" data-toggle="0"></div>
-			        <div class="cell" id="s14" data-toggle="0"></div>
+			    	<div class="cell" id="b10" data-toggle="0"><div id="s10"></div></div>
+			        <div class="cell" id="b11" data-toggle="0"><div id="s11"></div></div>
+			        <div class="cell" id="b12" data-toggle="0"><div id="s12"></div></div>
+			        <div class="cell" id="b13" data-toggle="0"><div id="s13"></div></div>
+			        <div class="cell" id="b14" data-toggle="0"><div id="s14"></div></div>
 			    </div>
 			    <div class="tableRow">
-			    	<div class="cell" id="s15" data-toggle="0"></div>
-			        <div class="cell" id="s16" data-toggle="0"></div>
-			        <div class="cell" id="s17" data-toggle="0"></div>
-			        <div class="cell" id="s18" data-toggle="0"></div>
-			        <div class="cell" id="s19" data-toggle="0"></div>
+			    	<div class="cell" id="b15" data-toggle="0"><div id="s15"></div></div>
+			        <div class="cell" id="b16" data-toggle="0"><div id="s16"></div></div>
+			        <div class="cell" id="b17" data-toggle="0"><div id="s17"></div></div>
+			        <div class="cell" id="b18" data-toggle="0"><div id="s18"></div></div>
+			        <div class="cell" id="b19" data-toggle="0"><div id="s19"></div></div>
 			    </div>
 			    <div class="tableRow">
-			    	<div class="cell" id="s20" data-toggle="0"></div>
-			        <div class="cell" id="s21" data-toggle="0"></div>
-			        <div class="cell" id="s22" data-toggle="0"></div>
-			        <div class="cell" id="s23" data-toggle="0"></div>
-			        <div class="cell" id="s24" data-toggle="0"></div>
+			    	<div class="cell" id="b20" data-toggle="0"><div id="s20"></div></div>
+			        <div class="cell" id="b21" data-toggle="0"><div id="s21"></div></div>
+			        <div class="cell" id="b22" data-toggle="0"><div id="s22"></div></div>
+			        <div class="cell" id="b23" data-toggle="0"><div id="s23"></div></div>
+			        <div class="cell" id="b24" data-toggle="0"><div id="s24"></div></div>
 			    </div>
 			</div>
 		</div>
@@ -60,7 +60,8 @@
 <script type="text/javascript">
 
 	var cellColor = "white";
-	var crossColor = "red";
+	var checkColor = "red";
+	var checkmarkHTML = "<div class='checkMark' style='color:red'>&#10006</div>"
 
 	if("{{message}}".length > 2) {
 		$("#welcome").html("{{message}}");
@@ -91,37 +92,36 @@
 			
 		if(parseInt($(this).attr("data-toggle")) === 0) {
 			$(this).attr("data-toggle", "1");
-			// $(this).css("background-color", crossColor);	
-			// $(this).append("<br><img src='./Jared.png' class='checkMark'>");
-			$(this).append("<div class='checkMark'>&#x2716</div>");
+			$(this).prepend(checkmarkHTML);
 		}
 		else {
 			$(this).attr("data-toggle", "0");
 			$(this).css("background-color", cellColor);	
-			$(this).children("*").remove();
-			
+			$(this).children(".checkMark").remove();
 		}
 		
 	});
 
+	$(".checkBox").on
+
 	//Sets page to default light theme
-	$("#light").on("click", function() { setTheme(null, "white", "#222", "#222", "black", "") });
+	$("#light").on("click", function() { setTheme(null, "white", "#222", "#222", "black", "red") });
 
 	//Sets page to dark theme
-	$("#dark").on("click", function(){ setTheme(null, "#333", "#eee", "#eee", "white", "") });
+	$("#dark").on("click", function(){ setTheme(null, "#333", "#eee", "#eee", "white", "white") });
 
 	//Sets page to strawberry shortcake theme
-	$("#strawberry").on("click", function(){ setTheme(null, "#FCDCE9", "#F42A2D", "#B0EB00", "#F7E9B2", "") });
+	$("#strawberry").on("click", function(){ setTheme(null, "#FCDCE9", "#F42A2D", "#9BD534", "red" , "#F7E9B2") });
 
 	//Sets page to spring theme
 	$("#easter").on("click", function() { setTheme(null, "#ABE544", "#867AEF", "#E177F3", "#71E8FC", "")});
 
 	//Sets page to Will theme
-	$("#beach").on("click", function() { setTheme("./beach.jpg", "none", "#ABE544", "darkblue", "#71E8FC", "")});
+	$("#beach").on("click", function() { setTheme("./beach.jpg", "none", "#ABE544", "darkblue", "black", "#71E8FC")});
 
 	$("#custom").on("click", function() {
-		let imageURL = prompt("Enter Background Image URL (select cancel if setting a color)");
-		let backgroundColor = prompt('Enter Background Color in a CSS format (i.e. "red", "#FF0000", or "rgb(256, 0, 0)")\nSelect cancel if setting an image.');
+		let backgroundColor = prompt('Enter BACKGROUND COLOR in a CSS format, (e.g. red, #FF0000, or rgb(256, 0, 0))\nSelect cancel if setting an image.');
+		let imageURL = prompt("Enter BACKGROUND IMAGE URL (select cancel if you set a background color)");
 		if(!imageURL && !backgroundColor) {
 			alert("Please enter either a background image or color.");
 			return;
@@ -129,15 +129,14 @@
 		let textColor = prompt("Enter MAIN TEXT COLOR for the squares in a CSS format (e.g. red, #FF0000, or rgb(256, 0, 0))");
 		let borderColor = prompt("Enter LINE COLOR for the squares in a CSS format (e.g. red, #FF0000, or rgb(256, 0, 0))");
 		let sideTextColor = prompt("Enter SIDE TEXT COLOR for the names and rules in a CSS format (e.g. red, #FF0000, or rgb(256, 0, 0))");
-		let xSpecs = prompt('Enter Image URL or Color of X to appear over box');
+		let xSpecs = prompt('Enter CHECKMARK COLOR in a CSS format (e.g. red, #FF0000, or rgb(256, 0, 0) to appear over the boxes');
 		setTheme(imageURL, backgroundColor, textColor, borderColor, sideTextColor, xSpecs);
 	});
 
-	$(".secret").on("click", function() { setTheme("./disco.png", "", "black", "white", "black", "")});
-
+	$(".secret").on("click", function() { setTheme("./disco.png", "", "black", "white", "black", "Jared")});
 
 	//Method to change page theme
-	const setTheme = (bgdImage, bgdColor, textColor, sideColor, lineColor, X) => {
+	const setTheme = (bgdImage, bgdColor, textColor, sideColor, lineColor, xType) => {
 		//Sets background image
 		if(bgdImage){
 			$(document.body).css("background-image", `url(${bgdImage})`);
@@ -154,19 +153,36 @@
 
 		//Sets text color for center of the page
 		$("*").css("color", textColor);
-		$("#home").css("color", textColor);
 			
 		//Sets color for the box
 		$(".cell").css("border-color", lineColor);
 
-		//Sets text color for the sidebars
+		let size = $(".cell").height();
+		console.log(size);
+		//Sets color for the crosses. If xType is Jared, sets the icon to Jared. 
+		if(xType === "Jared") {
+			//Sets checkMarkHTML so that all new marks are the Jared icon
+			checkmarkHTML = `<div class='checkMark'><img src='./Jared.png' alt='Jared' height='${size}'></div>`;
+			$(".checkMark").html(`<img src='./Jared.png' alt='Jared' height='${size}'>`);
+		}
+		else {
+			//Sets all marks on the page to the color
+			$(".checkMark").html("&#10006");
+			$(".checkMark").css("color", xType);
+			//Updates the HTML so that all new marks are X's of xType color
+			checkmarkHTML = "<div class='checkMark' style='color:" + xType + "'>&#10006</div>";
+		}
+
+		//Sets text color for the sidebars and bottom bar
 		$("h3").css("color", sideColor);
+		$("footer").css("color", sideColor);
+		$("span").css("color", sideColor);
+		$("#home").css("color", sideColor);
 		$(".rules").css("color", sideColor);
 		$(".playerLink").css("color", sideColor);
-		$(".secret").css("color", sideColor);
 		$("li").css("color", sideColor);
 	}
-
+	
 </script>
 
 
