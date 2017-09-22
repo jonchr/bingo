@@ -44,7 +44,7 @@ var squares = [
 `Jared slack messages > 100`,
 `"Slack/post your solution in the class-instructions channel"`,
 `Jared calls people out for being hungover`,
-`We're behind schedule/need to step on the accelerator`
+`"We're behind schedule/need to step on the accelerator"`
 ];
 
 module.exports = squares;
