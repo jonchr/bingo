@@ -1,10 +1,10 @@
 //Exports the potential squares to controller
 //Currently, the way the handlebar files are set up, the middle square will be the zero-index entry (late-crew is late)
 
-//An event cannot have a comma, quotes, or apostrophes in it or it'll screw everything up
+//An event cannot have a comma in it or it'll screw everything up
 
 var squares = [
-`Late crew (Mahdia/Bryan) is late`,
+`Late crew is late`,
 `Hearthstone`,
 `Christin gets the dirt from someone`,
 `Stephen / Steven confusion`,
@@ -16,7 +16,8 @@ var squares = [
 `Jared gets visibly frustrated`,
 `Kevin / Kyle guest appearance`,
 `Alex is wearing a t-shirt`,
-`Bad pun / Jared makes a joke that falls flat`,
+`Bad puns`,
+`Jared makes a joke that falls flat`,
 `"Parking lot that"`,
 `Jared adjusts the blinds while teaching`,
 `Jared vs. touchscreen`,
