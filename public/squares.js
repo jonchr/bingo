@@ -15,7 +15,7 @@ var squares = [
 `"Please explain lines 1-5"`,
 `Jared gets visibly frustrated`,
 `Kevin / Kyle guest appearance`,
-`Alex is wearing a t-shirt`,
+`Alex is wearing a long sleeve button-down`,
 `Bad puns`,
 `Jared makes a joke that falls flat`,
 `"Parking lot that"`,
