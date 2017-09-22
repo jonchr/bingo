@@ -41,7 +41,7 @@ var squares = [
 `"Do we need more time on this?... ok... a few more minutes"`,
 `Jared tries to trick people`,
 `"Netflix & chill"`,
-`Jared slack messages > 100`,
+`Jared's unread slack messages > 100`,
 `"Slack/post your solution in the class-instructions channel"`,
 `Jared calls people out for being hungover`,
 `"We're behind schedule/need to step on the accelerator"`
