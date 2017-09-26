@@ -130,7 +130,7 @@
 		let borderColor = prompt("Enter LINE COLOR for the squares in a CSS format (e.g. red, #FF0000, or rgb(256, 0, 0))");
 		let sideTextColor = prompt("Enter SIDE TEXT COLOR for the names and rules in a CSS format (e.g. red, #FF0000, or rgb(256, 0, 0))");
 		let xSpecs = prompt('Enter CHECKMARK COLOR in a CSS format (e.g. red, #FF0000, or rgb(256, 0, 0) to appear over the boxes');
-		setTheme(imageURL, backgroundColor, textColor, borderColor, sideTextColor, xSpecs);
+		setTheme(imageURL, backgroundColor, textColor, sideTextColor, borderColor, xSpecs);
 	});
 
 	$(".secret").on("click", function() { setTheme("./disco.png", "", "black", "white", "black", "Jared")});
