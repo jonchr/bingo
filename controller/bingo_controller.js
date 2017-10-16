@@ -58,7 +58,8 @@ app.get("/:player", function(req, res){
 
 		res.render("index", { 
 			board: mySquares.join(","),
-			message: id
+			message: id,
+			name: pName
 		});
 	});
 }); 
